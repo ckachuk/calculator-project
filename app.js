@@ -3,8 +3,6 @@ let operator = '0';
 let firstValue = '0';
 let secondValue= '0';
 let currentValue = '';
-let result = '';
-let countOperator = 0;
 
 //functions
 
@@ -57,9 +55,9 @@ const appendValueToVariable = function(value){
 
 
 const getResult = function(){
-    result = operate(operator, parseFloat(firstValue), parseFloat(secondValue));
-    currentValue = result;
-    firstValue = result;
+    res = operate(operator, parseFloat(firstValue), parseFloat(secondValue));
+    currentValue = res;
+    firstValue = res;
     displayValue(currentValue);
 }
 
@@ -97,10 +95,19 @@ buttonsOperator.forEach(button => {
 const equal = document.getElementById('equals');
 
 equal.addEventListener('click',(e)=>{
-    //Asign value of current value to secondValue
-    appendValueToVariable(currentValue);
-    getResult();
-    operator = '';
+    
+    if(firstValue == '0' || operator == ''){
+        displayValue(currentValue);
+        
+    }
+    else{ 
+        //Asign value of current value to secondValue
+        appendValueToVariable(currentValue);
+        getResult();
+        operator = '';
+    }
+
+    
 })
 
 

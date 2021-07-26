@@ -5,38 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    
     <title>Calculator app</title>
 </head>
 <body>
-    <main>
-        <div class="conteiner">
-            <div class="display" data-screen="">0</div>
-            <div class="buttons-digits">
-                <button id='0'>0</button>
-                <button id='1'>1</button>
-                <button id='2'>2</button>
-                <button id='3'>3</button>
-                <button id='4'>4</button>
-                <button id='5'>5</button>
-                <button id='6'>6</button>
-                <button id='7'>7</button>
-                <button id='8'>8</button>
-                <button id='9'>9</button>
-            </div>
-            <div class="buttons-operator">
-                <button id='*'>*</button>
-                <button id='/'>/</button>
-                <button id='-'>-</button>
-                <button id='+'>+</button>
-            </div>
-            <div class="buttons-others">
-                <button id='equals'>Equals</button>
-                <button id='clear'>Clear</button>
-            </div>
+    <div class="title">
+        <h1>Calculator project</h1>
+    </div>
+    
+    <div class="conteiner">
+        <div class="display" data-screen="">0</div>
+        <div class="other-buttons">
+            <button id='clear'>Clear</button>
+            <button id='delete'>Delete</button>
         </div>
-    </main>
+            
+        <div class="buttons">
+                
+            <button id='7' class="buttons-digits">7</button>
+            <button id='8' class="buttons-digits">8</button>
+            <button id='9' class="buttons-digits">9</button>
+            <button id='/' class="buttons-operator">/</button>
 
-    <footer></footer>
+            <button id='4' class="buttons-digits">4</button>
+            <button id='5' class="buttons-digits">5</button>
+            <button id='6' class="buttons-digits">6</button>
+            <button id='*' class="buttons-operator">*</button>
+
+            <button id='1' class="buttons-digits">1</button>
+            <button id='2' class="buttons-digits">2</button>
+            <button id='3' class="buttons-digits">3</button>
+            <button id='-' class="buttons-operator">-</button>
+
+            <button id='.' class="buttons-digits">.</button>
+            <button id='0' class="buttons-digits">0</button> 
+                
+            <button id='equals'>=</button>
+            <button id='+' class="buttons-operator">+</button>
+                
+        </div>
+    </div>
+    
+
+    <footer> <a href="https://github.com/ckachuk">developed by carlk</a></footer>
     <script src="app.js"></script>
 </body>
 </html>

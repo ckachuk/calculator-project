@@ -1,7 +1,7 @@
 //global variables
-let operator = '0';
-let firstValue = '0';
-let secondValue= '0';
+let operator = '';
+let firstValue = '';
+let secondValue= '';
 let currentValue = '';
 
 //functions
@@ -25,26 +25,48 @@ const multiply = function(element1, element2){
 
 
 const operate = function(operator, element1, element2){
-
-    switch(operator){
-        case '*':
-            return multiply(element1,element2);
-        case '/':
-            return divide(element1, element2);
-        case '+':
-            return add(element1, element2);
-        case '-':
-            return subtract(element1, element2);
+    if(isNaN(element1) && isNaN(element2)){
+        return 0;
     }
+    else if(isNaN(element2)){
+        return element1;
+    }
+    else if(isNaN(element1)){
+        return 0;
+    }
+    else{
+        switch(operator){
+            case '*':
+                return multiply(element1,element2);
+            case '/':
+                return divide(element1, element2);
+            case '+':
+                return add(element1, element2);
+            case '-':
+                return subtract(element1, element2);
+        }
+    }
+    
 }
 
 const displayValue = function(value){
+    
     display.innerHTML= '';
     display.textContent = value;
+       
 }
 
+const clearCalculator = function(){
+    firstValue = '';
+    secondValue = '';
+    currentValue = '';
+    operator = '';
+    displayValue('0');
+}
+
+
 const appendValueToVariable = function(value){
-    if(firstValue == 0){
+    if(firstValue == ''){
         firstValue = value;
     }
     else if(operator != ''){
@@ -56,58 +78,111 @@ const appendValueToVariable = function(value){
 
 const getResult = function(){
     res = operate(operator, parseFloat(firstValue), parseFloat(secondValue));
-    currentValue = res;
-    firstValue = res;
-    displayValue(currentValue);
+    currentValue = res.toString();
+
+
+    if(res === Infinity){
+        displayValue('ERROR divided by 0');
+        return;
+    }else if(!Number.isInteger(res)){
+        displayValue(currentValue.toFixed(2))
+    }
+    else{
+        displayValue(currentValue);
+    }
+    
+    firstValue = res.toString();
+    operator = '';
+    secondValue = '';
+
+    
+}
+
+const deleteLastCharacter = function(){
+    if(currentValue === ''){
+        currentValue = '0';
+    }
+    else if(currentValue === firstValue){
+        currentValue = currentValue.slice(0, -1);
+        firstValue = currentValue;
+    }
+    else{
+        currentValue = currentValue.slice(0, -1);
+    }
 }
 
 
 // events
+
+const display = document.querySelector('.display');
+
+
+//digits buttons handler
 const buttonsDigits = document.querySelectorAll('.buttons-digits');
 
 
 buttonsDigits.forEach(button => {
     button.addEventListener('click', (e)=>{
-       currentValue += e.target.id;
-       displayValue(currentValue);
+        if(e.target.id =='.' && currentValue == ''){
+            //appended up to only 17 characters
+            if(currentValue.length < 17){
+                currentValue += 0
+                currentValue += e.target.id;
+            }    
+        }
+        else{
+            if(currentValue.length < 17){
+                currentValue += e.target.id;
+                displayValue(currentValue);
+            }  
+        }
     });
 });
 
 
-const display = document.querySelector('.display');
+//operator buttons handler
 const buttonsOperator = document.querySelectorAll('.buttons-operator');
-
 
 buttonsOperator.forEach(button => {
     button.addEventListener('click',(e)=>{  
-        //Asign value of current value to firstValue
+        //Asign value of current value to firstValue or secondValue
         appendValueToVariable(currentValue); 
+        
         if(secondValue != '0'){
             getResult();
         }        
+
         operator = e.target.id;
         currentValue = ''; 
-
         
     })
 });
 
+//equal button handler
 const equal = document.getElementById('equals');
 
-equal.addEventListener('click',(e)=>{
-    
-    if(firstValue == '0' || operator == ''){
-        displayValue(currentValue);
-        
-    }
-    else{ 
-        //Asign value of current value to secondValue
-        appendValueToVariable(currentValue);
-        getResult();
-        operator = '';
-    }
-
-    
+equal.addEventListener('click', ()=>{
+    //Asign value of current value to secondValue
+    appendValueToVariable(currentValue);
+    getResult();
 })
+
+
+//clear button handler
+const clear = document.getElementById('clear');
+
+clear.addEventListener('click', clearCalculator);
+
+
+//delete button handler
+const deleteButton = document.getElementById('delete');
+
+deleteButton.addEventListener('click', ()=>{
+    deleteLastCharacter();
+    displayValue(currentValue);
+})
+
+
+
 
 

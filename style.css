@@ -1,6 +1,141 @@
 
-button{
-    min-width: 50px;
-    min-height: 50px;
+:root{
+    --color1 : #121823;
+    --color2 : #12416f;
+    --color3 : #1dbcbf;
+    --color4 : #20da9e;
+    --color5 : #e5eda6;
+    --color6: whitesmoke;
+}
 
+h1{
+    color: whitesmoke;  
+}
+
+.title{
+    text-align: center;
+    padding-top: 20px;
+}
+
+
+body{
+    background-color: var(--color1);
+    font-family: 'roboto', sans-serif;
+}
+
+.conteiner{
+   display: grid;
+   padding: 50px 0px 20px;
+   grid-template-columns:repeat(7, 1fr);
+   grid-template-areas: 
+   ". . . display . . ."
+   ". . . buttons2 . . ."
+   ". . . buttons1 . . .";
+   
+   
+}
+.buttons{
+    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 300px;
+    grid-area: buttons1;
+}
+
+
+.other-buttons{
+    grid-area: buttons2;
+    max-width: 300px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    
+}
+
+#clear{
+    width: 150px;
+    height: 60px;
+    background-color: var(--color4);
+    color: var(--color1);
+    font-size: 20px;
+    
+}
+
+#delete{
+    font-size: 20px;
+    width: 150px;
+    height: 60px;
+    background-color: var(--color4);
+    color: var(--color1);
+
+}
+
+.display{
+    max-width: 300px;
+    height: 80px;
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: var(--color2);
+    grid-area: display;
+    color: whitesmoke;
+    
+}
+
+button{
+    border: none;
+    min-width: 70px;
+    min-height: 70px;
+    font-size: 20px;
+    color: var(--color1);
+    
+}
+
+
+footer{
+    height: 50px;
+    background-color: var(--color1);
+    display: flex;
+    justify-content: center;
+    
+}
+
+a{
+    text-decoration: none;
+    color: var(--color6);
+}
+
+.buttons-operator{
+    background-color: var(--color3);
+}
+
+.buttons-digits{
+    background-color: var(--color5);
+}
+
+#equals{
+    background-color: var(--color4);
+    color: var(--color1);
+}
+
+
+button:hover{
+    font-size: 30px;
+    background-color: rgba(18, 65, 111, 0.5);
+    color: var(--color6)
+}
+
+#delete:hover{
+    background-color: rgba(18, 65, 111, 0.5);
+    color: var(--color6)
+}
+
+#clear:hover{
+    background-color: rgba(18, 65, 111, 0.5);
+    color: var(--color6)
+}
+
+#equals:hover{
+    background-color: rgba(18, 65, 111, 0.5);
+    color: var(--color6)
 }

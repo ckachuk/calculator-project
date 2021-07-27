@@ -184,5 +184,55 @@ deleteButton.addEventListener('click', ()=>{
 
 
 
+//keyboard supoort
+
+document.addEventListener('keydown', (e)=>{
+    buttonsDigits.forEach(element => {
+        if(e.key === element.id){
+            if(e.key === '.' && currentValue == ''){
+                //appended up to only 17 characters
+                if(currentValue.length < 17){
+                    currentValue += 0
+                    currentValue += e.key;
+                }    
+            }
+            else{
+                if(currentValue.length < 17){
+                    currentValue += e.key;
+                    displayValue(currentValue);
+                }  
+            }  
+        }
+    });
+
+    buttonsOperator.forEach(element => {
+        if(e.key === element.id){
+             //Asign value of current value to firstValue or secondValue
+            appendValueToVariable(currentValue); 
+        
+            if(secondValue != '0'){
+                getResult();
+            }        
+            operator = e.key;
+            currentValue = ''; 
+        }
+    });
+
+
+    //if you press the equal, evaluate the operation
+    if(e.key === '='){
+        //Asign value of current value to secondValue
+        appendValueToVariable(currentValue);
+        getResult();
+    }
+   
+
+    //if you press the backspace key, delete the last character
+    if(e.key === 'Backspace'){
+        deleteLastCharacter();
+        displayValue(currentValue); 
+    }
+
+});
 
 
